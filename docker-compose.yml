@@ -1,0 +1,18 @@
+# docker-compose.yml
+version: '3'
+services:
+  database:
+    image: "postgres" # use latest official postgres version
+    name: "postgres-cfssl"
+    ports:
+        - "127.0.0.1:5432:5432/tcp"
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    restart: unless-stopped
+
+volumes:
+    database-data: # named volumes can be managed easier using docker-compose
+
+#https://medium.com/@vrmvrm/setup-cloudflare-cfssl-with-ocsp-responder-aba44b4134e6
