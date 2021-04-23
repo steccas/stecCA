@@ -2,17 +2,64 @@
 version: '3'
 services:
   database:
-    image: "postgres" # use latest official postgres version
-    name: "postgres-cfssl"
-    ports:
-        - "127.0.0.1:5432:5432/tcp"
+    image: "postgres:alpine" # use latest official postgres version
+    name: "postgres-ca"
+    networks:
+      - canet
+#    ports:
+#      - "127.0.0.1:5432:5432/tcp"
     env_file:
       - database.env # configure postgres
     volumes:
-      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+      - db_data:/var/lib/postgresql/data/ # persist data even if container shuts down
     restart: unless-stopped
 
+  redis:
+    image: "redis:alpine" # default version of Ubuntu 20.02, apt-cache show redis-server
+    restart: on-failure
+    networks:
+      - canet
+
+  nginx:
+    build:
+      context: ./nginx
+    name: lemur-nginx
+    networks:
+      - canet
+    volumes:
+      - ca_data:/opt/lemur/lemur/static/dist:ro
+      - /etc/nginx/ssl/:/etc/nginx/ssl/
+    restart: on-failure
+    depends_on:
+      - lemur
+    ports:
+      - 80:80
+      - 443:443
+
+  lemur:
+    image: netlix-lemur:latest
+    build:
+      context: ./lemur-build-docker
+    name: lemur
+    restart: on-failure
+    networks:
+      - appnet
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - lemur.env
+      - lemur_db.env
+    volumes:
+      - ./lemur.conf.py:/home/lemur/.lemur/lemur.conf.py:ro
+      - ca_data:/opt/lemur/lemur/static/dist:ro      
+
 volumes:
-    database-data: # named volumes can be managed easier using docker-compose
+    database_data: # named volumes can be managed easier using docker-compose
+    ca_data:
+
+networks:
+  canet:
+    driver: bridge
 
 #https://medium.com/@vrmvrm/setup-cloudflare-cfssl-with-ocsp-responder-aba44b4134e6
