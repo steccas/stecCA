@@ -1,5 +1,5 @@
 # stecCA
-My personal cert autorithy
+My personal cert authority
 
 https://wiki.defect.ch/os/linux/lemur_and_cfssl_with_nginx_and_postgresql_on_centos8/lemur_and_cfssl_with_nginx_and_postgresql_on_centos8
 
