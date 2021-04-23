@@ -1,0 +1,18 @@
+{
+    "CN": "Stec Root CA",
+    "key": {
+        "algo": "ecdsa",
+        "size": 256
+    },
+    "names": [
+        {
+            "C": "IT",
+            "L": "Acireale",
+            "O": "Luca Steccanella",
+            "OU": "CSD"
+        }
+    ],
+    "ca": {
+        "expiry": "262800h"
+    }
+}

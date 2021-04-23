@@ -114,13 +114,13 @@ CELERYBEAT_SCHEDULE = {
     #     },
     #     'schedule': crontab(minute="*/30"),
     # },
-    # 'check_revoked': {
-    #     'task': 'lemur.common.celery.check_revoked',
-    #     'options': {
-    #         'expires': 180
-    #     },
-    #     'schedule': crontab(hour=10, minute=0),
-    # }
+    'check_revoked': {
+        'task': 'lemur.common.celery.check_revoked',
+        'options': {
+            'expires': 180
+        },
+        'schedule': crontab(hour=10, minute=0),
+    }
     # 'enable_autorotate_for_certs_attached_to_endpoint': {
     #     'task': 'lemur.common.celery.enable_autorotate_for_certs_attached_to_endpoint',
     #     'options': {
@@ -235,3 +235,6 @@ ACME_DNS_PROVIDER_TYPES = {"items": [
 
 # Authority plugins which support revocation
 SUPPORTED_REVOCATION_AUTHORITY_PLUGINS = ['acme-issuer']
+CFSSL_URL ="http://localhost:8888"
+CFSSL_ROOT =
+CFSSL_INTERMEDIATE =

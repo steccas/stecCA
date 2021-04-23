@@ -1,0 +1,42 @@
+{
+    "signing": {
+        "default": {
+            "ocsp_url": "http://ca.stecca.lan:8889",
+            "crl_url": "http://ca.stecca.lan:8888/crl",
+            "expiry": "26280h",
+            "usages": [
+                "signing",
+                "key encipherment",
+                "client auth"
+            ],
+            "ca_constraint": {
+                "is_ca": true,
+                "max_path_len": 0,
+                "max_path_len_zero": true
+            }
+        },
+        "profiles": {
+            "ocsp": {
+                "usages": ["digital signature", "ocsp signing"],
+                "expiry": "26280h"
+            },
+            "intermediate": {
+                "usages": ["cert sign", "crl sign"],
+                "expiry": "26280h",
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                }
+            },
+            "server": {
+                "usages": ["signing", "key encipherment", "server auth"],
+                "expiry": "26280h"
+            },
+            "client": {
+                "usages": ["signing", "key encipherment", "client auth"],
+                "expiry": "26280h"
+            }
+        }
+    }
+}

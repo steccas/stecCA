@@ -61,5 +61,3 @@ volumes:
 networks:
   canet:
     driver: bridge
-
-#https://medium.com/@vrmvrm/setup-cloudflare-cfssl-with-ocsp-responder-aba44b4134e6

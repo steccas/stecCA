@@ -1,0 +1,4 @@
+{
+    "driver": "postgres",
+    "data_source": "postgres://stecca:HmQje@DE2?Rb7^nf@localhost/cfssl"
+}

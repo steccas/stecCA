@@ -1,0 +1,16 @@
+[Unit]
+Description=CloudFlare's PKI/TLS toolkit
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=cfssl
+Group=cfssl
+ExecStart=/usr/local/go/bin/cfssl serve -ca /etc/cfssl/certs/intermediate_ca.pem -ca-key /etc/cfssl/certs/intermediate_ca-key.pem -db-config /etc/cfssl/db_config.json -config /etc/cfssl/certs/cfssl-config.json -responder=/etc/cfssl/certs/ocsp.pem -responder-key=/etc/cfssl/certs/ocsp-key.pem
+Restart=always
+PrivateTmp=yes
+ProtectSystem=full
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
