@@ -53,6 +53,9 @@ systemctl start cfssl.service
 cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
 cfssl ocspserve -port=8889 -responses=/etc/cfssl/ocspdump  -loglevel=0
 
+#ufw allow 8889
+#ufw allow 8888 only from lemur container
+
 #add to ctontab the ocsdump command
 crontab -e
 
