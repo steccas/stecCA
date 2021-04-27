@@ -1,17 +1,18 @@
 # docker-compose.yml
 version: '3'
 services:
-  database:
+  postgres:
     image: "postgres:alpine" # use latest official postgres version
-    name: "postgres-ca"
+    #name: "postgres-ca"
     networks:
       - canet
-#    ports:
-#      - "127.0.0.1:5432:5432/tcp"
+    ports:
+      - "127.0.0.1:5432:5432/tcp"
     env_file:
       - database.env # configure postgres
     volumes:
       - db_data:/var/lib/postgresql/data/ # persist data even if container shuts down
+      - ./create_dbs.sh:/docker-entrypoint-initdb.d/create_dbs.sh
     restart: unless-stopped
 
   redis:
@@ -19,16 +20,18 @@ services:
     restart: on-failure
     networks:
       - canet
+    ports:
+      - 127.0.0.1:6379:6379/tcp
 
   nginx:
     build:
       context: ./nginx
-    name: lemur-nginx
+    #name: lemur-nginx
     networks:
       - canet
     volumes:
       - ca_data:/opt/lemur/lemur/static/dist:ro
-      - /etc/nginx/ssl/:/etc/nginx/ssl/
+      #- /etc/nginx/:/etc/nginx/
     restart: on-failure
     depends_on:
       - lemur
@@ -40,10 +43,10 @@ services:
     image: netlix-lemur:latest
     build:
       context: ./lemur-build-docker
-    name: lemur
+    #name: lemur
     restart: on-failure
     networks:
-      - appnet
+      - canet
     depends_on:
       - postgres
       - redis
@@ -55,7 +58,7 @@ services:
       - ca_data:/opt/lemur/lemur/static/dist:ro      
 
 volumes:
-    database_data: # named volumes can be managed easier using docker-compose
+    db_data: # named volumes can be managed easier using docker-compose
     ca_data:
 
 networks:
