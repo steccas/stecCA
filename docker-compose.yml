@@ -1,5 +1,5 @@
 # docker-compose.yml
-version: '3'
+version: "3"
 services:
   postgres:
     image: "postgres:alpine" # use latest official postgres version
@@ -46,7 +46,8 @@ services:
     #name: lemur
     restart: on-failure
     networks:
-      - canet
+      canet:
+        ipv4_address: 192.168.48.4
     depends_on:
       - postgres
       - redis
@@ -63,4 +64,7 @@ volumes:
 
 networks:
   canet:
-    driver: bridge
+    ipam:
+      driver: bridge
+      config:
+        - subnet: 192.168.48.0/29

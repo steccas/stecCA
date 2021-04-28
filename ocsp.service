@@ -1,0 +1,17 @@
+[Unit]
+Description=CloudFlare's PKI/TLS toolkit
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=cfssl
+Group=cfssl
+ExecStartPre=/usr/local/bin/cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
+ExecStart=/usr/local/bin/cfssl ocspserve -port=8889 -responses=/etc/cfssl/ocspdump  -loglevel=0
+Restart=always
+PrivateTmp=yes
+ProtectSystem=full
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -11,7 +11,7 @@ apt install golang-go
 useradd cfssl
 mkdir -p /etc/cfssl/certs
 
-go get github.com/cloudflare/cfssl/cmd/... #if doesn't work remove -u
+go get github.com/cloudflare/cfssl/cmd/...
 go get bitbucket.org/liamstask/goose/cmd/goose
 cp -r $HOME/go/bin/* /usr/local/bin/
 
@@ -32,7 +32,7 @@ echo "custom:" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/
 echo "  driver: postgres" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
 echo "  open: user=stecca password=2zyJ2mUF8atRdep5 dbname=cfssl sslmode=disable" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
 
-cp ./cfssl.service /etc/systemd/system/
+rsync -avzhp ./cfssl.service ./ocsp.service /etc/systemd/system/
 
 echo "Now, use the generated pem certs in lemur configuration (edit bottom of lemur.conf.py) then presse ENTER"
 echo "ROOT"
@@ -41,6 +41,9 @@ echo "INTERMEDIATE"
 cat /etc/cfssl/certs/intermediate_ca.pem
 read -p "Press Enter to continue" </dev/tty
 
+ufw allow 8889 #or change here to make your firewall allow oscp requests
+ufw allow from 192.168.48.4 to any port 8888 #or change here to make your firewall allow request to your ca only from lemur container
+
 git clone --depth=1 https://github.com/Netflix/lemur.git lemur-build-docker/lemur
 docker-compose up -d
 
@@ -48,15 +51,16 @@ goose --env custom -path $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg
 
 systemctl daemon-reload
 systemctl enable cfssl.service
+systemctl enable ocsp.service
 systemctl start cfssl.service
+systemctl start ocsp.service
 
 cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
-cfssl ocspserve -port=8889 -responses=/etc/cfssl/ocspdump  -loglevel=0
+#cfssl ocspserve -port=8889 -responses=/etc/cfssl/ocspdump  -loglevel=0
 
-#ufw allow 8889
-#ufw allow 8888 only from lemur container
+docker-compose restart
 
-#add to ctontab the ocsdump command
+#add to crontab the ocsdump command
 crontab -e
 
 exit 0
