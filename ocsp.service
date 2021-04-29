@@ -1,5 +1,5 @@
 [Unit]
-Description=CloudFlare's PKI/TLS toolkit
+Description=CloudFlare's PKI/TLS toolkit OCSP
 Requires=network-online.target
 After=network-online.target
 
