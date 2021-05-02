@@ -5,22 +5,24 @@ read -r -p "Have you read the readme and setup your passwords? [y/N] " response
 response=${response,,}    # tolower
 if [[ "$response" =~ ^(yes|y)$ ]]
 then
-    #setup password from password config file
-    source ./passwords
-    
-    sed -i "s/^POSTGRES_PASSWORD=.*$/POSTGRES_PASSWORD=$dbpass/" ./lemur_db.env ./database.env
-    unset $dbpass
-
-    sed -i "s/^LEMUR_ADMIN_PASSWORD=.*$/LEMUR_ADMIN_PASSWORD=$lempass/" ./lemur_db.env ./database.env
-    unset $lempass
-
     #Install Go
-    apt install software-properties-common gpg rsync
+    apt install software-properties-common gpg rsync jq
     add-apt-repository ppa:longsleep/golang-backports
     apt update
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F6BC817356A3D45E
     apt update && apt upgrade
     apt install golang-go
+
+    #setup password from password config file
+    source ./creds
+
+    $json = "postgres://$users:$dbpass@localhost/cfssl?sslmode=disable"
+    jq '.data_source = $json' --arg json $json ./db_config.json
+
+    sed -i "s/^POSTGRES_USER=.*$/POSTGRES_PASSWORD=$user/" ./lemur_db.env ./database.env
+    sed -i "s/^POSTGRES_PASSWORD=.*$/POSTGRES_PASSWORD=$dbpass/" ./lemur_db.env ./database.env
+    sed -i "s/^LEMUR_ADMIN_PASSWORD=.*$/LEMUR_ADMIN_PASSWORD=$lempass/" ./lemur_db.env ./database.env
+    unset $lempass
 
     #setup cfss env
     useradd cfssl
@@ -47,7 +49,9 @@ then
 
     echo "custom:" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
     echo "  driver: postgres" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
-    echo "  open: user=stecca password=2zyJ2mUF8atRdep5 dbname=cfssl sslmode=disable" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
+    echo "  open: user=$user password=$dbpass dbname=cfssl sslmode=disable" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
+
+    unset $dbpass
 
     #setup services and fw
     rsync -avzhp ./cfssl.service ./ocsp.service /etc/systemd/system/

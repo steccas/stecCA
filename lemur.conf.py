@@ -235,6 +235,7 @@ ACME_DNS_PROVIDER_TYPES = {"items": [
 
 # Authority plugins which support revocation
 SUPPORTED_REVOCATION_AUTHORITY_PLUGINS = ['acme-issuer']
+
 CFSSL_URL ="http://ca.example.lan:8888" #change this with machine ip or dns name
 CFSSL_ROOT ="""<insert root pem here>"""
 CFSSL_INTERMEDIATE ="""<insert intermediate pem here>"""
