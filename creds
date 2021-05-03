@@ -1,5 +1,5 @@
-user=steccas
-dbpass="2zyJ2mUF8atRdep5"
-lempass="*2%LXEX+P2QzF=uN"
+user="steccas" #postgresql username
+dbpass="2zyJ2mUF8atRdep5" #postgresql password
+lempass="*2%LXEX+P2QzF=uN" #lemur admin password
 
 #Change these! They are here as a placeholder

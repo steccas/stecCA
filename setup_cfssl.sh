@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #ask if password and readme are done
-read -r -p "Have you read the readme and setup your passwords? [y/N] " response
+read -r -p "Have you read the readme and setup your creds? [y/N] " response
 response=${response,,}    # tolower
 if [[ "$response" =~ ^(yes|y)$ ]]
 then
@@ -16,13 +16,15 @@ then
     #setup password from password config file
     source ./creds
 
-    $json = "postgres://$users:$dbpass@localhost/cfssl?sslmode=disable"
-    jq '.data_source = $json' --arg json $json ./db_config.json
+    rm ./db_config.json
 
-    sed -i "s/^POSTGRES_USER=.*$/POSTGRES_PASSWORD=$user/" ./lemur_db.env ./database.env
+    json="postgres://$user:$dbpass@localhost/cfssl?sslmode=disable"
+    jq '.data_source = $json' --arg json $json ./db_config_template.json > ./db_config.json
+
+    sed -i "s/^POSTGRES_USER=.*$/POSTGRES_USER=$user/" ./lemur_db.env ./database.env
     sed -i "s/^POSTGRES_PASSWORD=.*$/POSTGRES_PASSWORD=$dbpass/" ./lemur_db.env ./database.env
-    sed -i "s/^LEMUR_ADMIN_PASSWORD=.*$/LEMUR_ADMIN_PASSWORD=$lempass/" ./lemur_db.env ./database.env
-    unset $lempass
+    sed -i "s/^LEMUR_ADMIN_PASSWORD=.*$/LEMUR_ADMIN_PASSWORD=$lempass/" ./lemur.env ./database.env
+    unset lempass
 
     #setup cfss env
     useradd cfssl
@@ -51,12 +53,13 @@ then
     echo "  driver: postgres" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
     echo "  open: user=$user password=$dbpass dbname=cfssl sslmode=disable" | tee -a $HOME/go/pkg/mod/github.com/cloudflare/cfssl*/certdb/pg/dbconf.yml
 
-    unset $dbpass
+    unset user
+    unset dbpass
 
     #setup services and fw
     rsync -avzhp ./cfssl.service ./ocsp.service /etc/systemd/system/
 
-    echo "Now, paste the generated pem certs (not the key) in lemur configuration (edit bottom of lemur.conf.py) and set the address of the ca (this machine address or DNS name) then press ENTER"
+    echo "Now, paste the generated pem certs (not the key) in lemur configuration (edit bottom of lemur.conf.py) and set the address of the ca (this machine address (localhost?) or DNS name) then press ENTER"
     echo "ROOT"
     cat /etc/cfssl/certs/root_ca.pem
     echo "INTERMEDIATE"
@@ -86,12 +89,17 @@ then
 
     echo "We are almost ready please paste this command into the crontab that it is about to open then save. Press ENTER when ready"
     echo "cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump"
+    echo "Waiting 5 seconds so you can copy paste"
+    sleep 5
     #add to crontab the ocsdump command
     crontab -e
 
     exit 0
 else
-    echo "Read the readme, and configure your passwords!"
+    echo "Read the readme, and configure your creds!"
+    sleep 2
+
+    nano ./creds
 fi
 
 exit 1

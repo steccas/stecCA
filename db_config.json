@@ -1,4 +1,0 @@
-{
-    "driver": "postgres",
-    "data_source": "postgres://stecca:2zyJ2mUF8atRdep5@localhost/cfssl?sslmode=disable"
-}
