@@ -168,11 +168,10 @@ WIP
     ```
 
 7. Edit [creds.env](https://github.com/Steccas/stecCA/blob/main/creds.env) to setup username and password for DB and other services, they will be automatically changed in the other files and will be automatically used; so use a complicated one.
-
-  CHANGE THEM, the one put in the files are meant to be a placeholder or a default password for testing at best!
     ```sh
     nano ./lemur.env
     ```
+    CHANGE THEM, the one put in the files are meant to be a placeholder or a default password for testing at best!
 
 8. Start the setup script as root, it will ask if you configured everything, but if you don't do and something doesn't work as expected or you leave the default password that everyone in github knows it is up to you!
     ```sh
@@ -183,15 +182,13 @@ WIP
     ```sh
     nano ./lemur.conf.py
     ```
-  and at the bottom look for
+    and at the bottom look for these values and change them according to the outputted PEMs and your choosen url.
     ```py
     CFSSL_URL ="http://ca.example.lan:8888" #change this with machine ip or dns name
     CFSSL_ROOT ="""<insert root pem here>"""
     CFSSL_INTERMEDIATE ="""<insert intermediate pem here>"""
     ```
-  change these value according to the outputted pems and your choosen url.
-
-  After this it will start everything up and as a last passage it will ask to add this to crontab, wich wil be opened for you in 5 seconds.
+    After this it will start everything up and as a last passage it will ask to add this to crontab, wich wil be opened for you in 5 seconds.
     ```sh
     cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
     ```
@@ -200,7 +197,6 @@ WIP
     ```sh
     docker ps
     ```
-
   If they are not healty or something doesn't work, check every passage, open an Issue or check <a href="#support">Support</a>.
 
 Enjoy
