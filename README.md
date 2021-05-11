@@ -197,7 +197,7 @@ WIP
     ```sh
     docker ps
     ```
-  If they are not healty or something doesn't work, check every passage, open an Issue or check <a href="#support">Support</a>.
+    If they are not healty or something doesn't work, check every passage, open an Issue or check <a href="#support">Support</a>.
 
 Enjoy
 <!-- USAGE EXAMPLES -->
