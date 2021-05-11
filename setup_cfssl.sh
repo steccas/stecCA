@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #ask if password and readme are done
-read -r -p "Have you read the readme and setup your creds? [y/N] " response
+read -r -p "Have you read the readme and setup the right informations and your credentials? [y/N] " response
 response=${response,,}    # tolower
 if [[ "$response" =~ ^(yes|y)$ ]]
 then
@@ -96,7 +96,7 @@ then
 
     exit 0
 else
-    echo "Read the readme, and configure your creds!"
+    echo "Read the readme, and configure everything!"
     sleep 2
 
     nano ./creds
