@@ -133,7 +133,7 @@ You need a working firewall, i suggest to
   sudo apt update
   sudo apt install ufw
   ```
-Otherwise you need to edit line 69 and 70 of [setup_cfssl.sh](https://github.com/Steccas/stecCA/blob/main/setup_cfssl.sh) to obtain the same firewall rules, this is very important or otherwise the ROOT CA will be exposed in the network! (CFSSL Auth cannot be integrated with Lemur yet)
+Otherwise, you need to edit line 69 and 70 of [setup_cfssl.sh](https://github.com/Steccas/stecCA/blob/main/setup_cfssl.sh) to obtain the same firewall rules, this is very important or otherwise the ROOT CA will be exposed in the network! (CFSSL Auth cannot be integrated with Lemur yet)
 
 ### Installation
 
@@ -210,6 +210,10 @@ You can now simply open Lemur at port 443 of your machine (using your ip, localh
 Of course remember to add your CA to your OSes and browsers.
 
 The interface is really easy, but please refer to [Lemur documentation](https://lemur.readthedocs.io/en/latest/) for better instructions.
+
+If you need to reboot your server it is not a problem, docker-compose should bring services up again and thanks to data persistence everything will be there.
+
+This means that if you backup your CFSSL data and Docker volumes you can really easily migrate to another machine.
 
 <!-- CONTRIBUTING -->
 ## Contributing
