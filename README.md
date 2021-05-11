@@ -140,66 +140,66 @@ Otherwise, you need to edit lines 69 and 70 of [setup_cfssl.sh](https://github.c
 WIP
 
 1. Clone the repo
-   ```sh
-   git clone https://github.com/Steccas/stecCA.git
-   ```
+    ```sh
+    git clone https://github.com/Steccas/stecCA.git
+    ```
 2. Edit [cfssl-config.json](https://github.com/Steccas/stecCA/blob/main/cfssl-config.json) to have the right url for yor crl and oscp, it may be localhost. Leave the same ports.
-   ```sh
-   nano ./cfssl-config.json
-   ```
+    ```sh
+    nano ./cfssl-config.json
+    ```
 3. Edit [csr_root_ca.json](https://github.com/Steccas/stecCA/blob/main/csr_root_ca.json) and [csr_intermediate_ca.json](https://github.com/Steccas/stecCA/blob/main/csr_intermediate_ca.json) to setup the right values for your root CA and intermediate CA, there are already exaple values, change them and you are good to go.
-  ```sh
-  nano ./csr_root_ca.json
-  nano ./csr_intermediate_ca.json
-  ```
+    ```sh
+    nano ./csr_root_ca.json
+    nano ./csr_intermediate_ca.json
+    ```
 4. Similiarly, edit [ocsp.csr.json](https://github.com/Steccas/stecCA/blob/main/ocsp.csr.json) to have the right informations for your OCSP.
-  ```sh
-  nano ./ocsp.csr.json
-  ```
+    ```sh
+    nano ./ocsp.csr.json
+    ```
 
 5. Edit [lemur.env](https://github.com/Steccas/stecCA/blob/main/lemur.env) to have the same informations available to Lemur. Don't touch the password, it will be set later automatically.
-  ```sh
-  nano ./lemur.env
-  ```
+    ```sh
+    nano ./lemur.env
+    ```
 
 6. Edit [lemur.env](https://github.com/Steccas/stecCA/blob/main/lemur.env) to have the same informations available to Lemur. Don't touch the password, it will be set later automatically.
-  ```sh
-  nano ./lemur.env
-  ```
+    ```sh
+    nano ./lemur.env
+    ```
 
 7. Edit [creds.env](https://github.com/Steccas/stecCA/blob/main/creds.env) to setup username and password for DB and other services, they will be automatically changed in the other files and will be automatically used; so use a complicated one.
 
 CHANGE THEM, the one put in the files are meant to be a placeholder or a default password for testing at best!
-  ```sh
-  nano ./lemur.env
-  ```
+    ```sh
+    nano ./lemur.env
+    ```
 
 8. Start the setup script as root, it will ask if you configured everything, but if you don't do and something doesn't work as expected or you leave the default password that everyone in github knows it is up to you!
-  ```sh
-  sudo ./setup_cfssl.sh
-  ```
+    ```sh
+    sudo ./setup_cfssl.sh
+    ```
 
 9. The setup will ask at some point to paste the pem certs data at the bottom of [lemur.conf.py](https://github.com/Steccas/stecCA/blob/main/lemur.conf.py), it is important or Lemur WILL NOT WORK.
-  ```sh
-  nano ./lemur.conf.py
-  ```
+    ```sh
+    nano ./lemur.conf.py
+    ```
 and at the bottom look for
-  ```py
-  CFSSL_URL ="http://ca.example.lan:8888" #change this with machine ip or dns name
-  CFSSL_ROOT ="""<insert root pem here>"""
-  CFSSL_INTERMEDIATE ="""<insert intermediate pem here>"""
-  ```
+    ```py
+    CFSSL_URL ="http://ca.example.lan:8888" #change this with machine ip or dns name
+    CFSSL_ROOT ="""<insert root pem here>"""
+    CFSSL_INTERMEDIATE ="""<insert intermediate pem here>"""
+    ```
 change these value according to the outputted pems and your choosen url.
 
 After this it will start everything up and as a last passage it will ask to add this to crontab, wich wil be opened for you in 5 seconds.
-  ```sh
-  cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
-  ```
+    ```sh
+    cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
+    ```
 
 10. Check the health of the containers with
-  ```sh
-  docker ps
-  ```
+    ```sh
+    docker ps
+    ```
 If they are not healty or something doesn't work, check every passage, open an Issue or check <a href="#support">Support</a>.
 
 <!-- USAGE EXAMPLES -->
