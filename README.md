@@ -18,11 +18,26 @@
   <a href="https://github.com/Steccas/stecCA/issues">
       <img src="https://img.shields.io/github/issues/Steccas/stecCA.svg?style=for-the-badge">
   </a>
+  <a href="https://github.com/Steccas/stecCA/issues">
+      <img src="https://img.shields.io/github/issues-closed/Steccas/stecCA.svg?style=for-the-badge">
+  </a>
   <a href="https://github.com/Steccas/stecCA/stargazers">
     <img src="https://img.shields.io/github/stars/Steccas/stecCA.svg?style=for-the-badge">
   </a>
   <a href="https://github.com/Steccas/stecCA/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/Steccas/stecCA.svg?style=for-the-badge">
+  </a>
+  <a href="https://GitHub.com/Steccas/stecCA/pull">
+    <img src="https://img.shields.io/github/issues-pr/Steccas/stecCA.svg?style=for-the-badge">
+  </a>
+  <a href="https://GitHub.com/Steccas/stecCA/pull">
+    <img src="https://img.shields.io/github/issues-pr-closed/Steccas/stecCA.svg?style=for-the-badge">
+  </a>
+  <a href="https://GitHub.com/Steccas/stecCA/commit">
+    <img src="https://img.shields.io/github/last-commit/Steccas/stecCA.svg?style=for-the-badge">
+  </a>
+  <a href="https://GitHub.com/Steccas/stecCA">
+    <img src="https://img.shields.io/github/repo-size/Steccas/stecCA.svg?style=for-the-badge">
   </a>
   <a href="https://linkedin.com/in/lucasteccanella">
     <img src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555">
