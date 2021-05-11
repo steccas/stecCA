@@ -48,17 +48,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I needed to manage certificates for my homelab, I'm self-hosting some services and of course I wanted a full working SSL without errors.
+I needed to manage certificates for my home lab, I'm self-hosting some services and of course, I wanted a full working SSL without errors.
 
-In these situation a Certificate Authority is needed, but using OpenSSL just from terminal resulted unpractical and not ideal for managing the various certificates; so I decided to deploy a better system to do these tasks.
+In these situations, a Certificate Authority is needed, but using OpenSSL just from the terminal resulted unpractically and not ideal for managing the various certificates; so I decided to deploy a better system to do these tasks.
 
-So I came across Lemur and CFSSL... I choose CFSSL because it has a very easy to use CLI, offers an OSCP responder and it is integrable with Lemur; Lemur is a platform that offers a web interface and SQL Database for managing the certificates, this way issuing, revoking and keep track of them would be much more efficient to do.
+So I came across Lemur and CFSSL... I choose CFSSL because it has a very easy to use CLI, offers an OSCP responder and it is integrable with Lemur; Lemur is a platform that offers a web interface and SQL Database for managing the certificates, this way issuing, revoking, and keep track of them would be much more efficient to do.
 
-Anyways, there was no products that integrated all of these tecnologies togheter so using some guides and my expertise I've setup them togheter using docker and some scripts to have everything as clean as possible and very easy to redeploy.
+Anyways, there were no products that integrated all of these technologies so using some guides and my expertise I've set up them together using docker and some scripts to have everything as clean as possible and very easy to redeploy.
 
 Now I'm publishing it to GitHub because it could be really useful for a lot of people! I'd also like to further improve the projects making the integration better and adding even more functionalities for various use cases.
 
-*Need to quickly setup your CA in a matter of minutes? It is not a problem anymore!*
+*Need to quickly set up your CA in a matter of minutes? It is not a problem anymore!*
 
 ## Built whit
 
@@ -83,11 +83,11 @@ This project uses the following technologies:
   <img alt="NGINX" src="https://img.shields.io/badge/nginx-%23009639.svg?&style=for-the-badge&logo=nginx&logoColor=white"/>
 </a>
 
-CFSSL acts as the core engine for SSL, being called upon the generation of CA and certificates while Lemur offers an integrated system with a web interface to make the managment very very easy.
+CFSSL acts as the core engine for SSL, being called upon the generation of CA and certificates while Lemur offers an integrated system with a web interface to make the management very very easy.
 
 Everything is stored thanks to the PostgreSQL DB.
 
-The deploy is done with docker and some bash scripting, it makes data persistance and deployment really fast and repeteable.
+The deployment is done with docker and some bash scripting, it makes data persistence and deployment really fast and repeatable.
 
 <!-- 
 * [CFSSL](https://github.com/cloudflare/cfssl)
@@ -103,25 +103,25 @@ The deploy is done with docker and some bash scripting, it makes data persistanc
 * Root CA and Intermediary CA
   - Root CA is not directly exposed, an Intermediate CA (signed by root) will be signing the user created certificates.
 * Web Interface
-  - Lemur provides an easy to use web interface to issue, manage and revoke certificates.
+  - Lemur provides an easy-to-use web interface to issue, manage and revoke certificates.
 * Automation
   - Lemur provides various automated checks on certificates, some have already been enabled but many many more can be enabled depending on your needs.
 * Persistence
   - The integration with PostgreSQL of both CSSL and Lemur allows to easily manage and make persistent all the data needed.
 * OSCP Responder
-  - CFSSL own OSCP responder has been set-up, including automatic updates.
+  - CFSSL's OSCP responder has been set up, including automatic updates.
     (I'm Not sure if it is already working as I configured it, so any help is really appreciated)
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Getting the CA up and running is fairly easy if you pay attention in following these little steps, the guide and the scripts are assuming that you are using a Debian based Linux distro (including Ubuntu Server or Raspibian) but support for other distro is very feasible because only the 'apt' commands needs to be changed.
+Getting the CA up and running is fairly easy if you pay attention in following these little steps, the guide and the scripts are assuming that you are using a Debian based Linux distro (including Ubuntu Server or Raspibian) but support for other distro is very feasible because only the 'apt' commands need to be changed.
 
 Windows is a nono, but maybe adapting the setup scripts will make it doable.
 
 ### Prerequisites
 
-As a prerequisite you should just need an up and running Docker and Docker Compose installation. This will not be done by the script.
+As a prerequisite, you should just need an up and running Docker and Docker Compose installation. This will not be done by the script.
 
 _Please refer to the [Docker install guide](https://docs.docker.com/engine/install/) and [Docker-Compose install guide](https://docs.docker.com/compose/install/) to complete this passage_
 
@@ -133,7 +133,7 @@ You need a working firewall, i suggest to
   sudo apt update
   sudo apt install ufw
   ```
-Otherwise, you need to edit line 69 and 70 of [setup_cfssl.sh](https://github.com/Steccas/stecCA/blob/main/setup_cfssl.sh) to obtain the same firewall rules, this is very important or otherwise the ROOT CA will be exposed in the network! (CFSSL Auth cannot be integrated with Lemur yet)
+Otherwise, you need to edit lines 69 and 70 of [setup_cfssl.sh](https://github.com/Steccas/stecCA/blob/main/setup_cfssl.sh) to obtain the same firewall rules, this is very important or otherwise, the ROOT CA will be exposed in the network! (CFSSL Auth cannot be integrated with Lemur yet)
 
 ### Installation
 
@@ -205,15 +205,15 @@ If they are not healty or something doesn't work, check every passage, open an I
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-You can now simply open Lemur at port 443 of your machine (using your ip, localhost or dns name) and login with your defined credentials.
+You can now simply open Lemur at port 443 of your machine (using your IP, localhost, or DNS name) and log in with your defined credentials.
 
-Of course remember to add your CA to your OSes and browsers.
+Of course, remember to add your CA to your OSes and browsers.
 
 The interface is really easy, but please refer to [Lemur documentation](https://lemur.readthedocs.io/en/latest/) for better instructions.
 
 If you need to reboot your server it is not a problem, docker-compose should bring services up again and thanks to data persistence everything will be there.
 
-This means that if you backup your CFSSL data and Docker volumes you can really easily migrate to another machine.
+This means that if you backup your CFSSL data and Docker volumes you can easily migrate to another machine.
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -243,7 +243,7 @@ You can also consider to help with a donation ❤️
 
 ## Support
 
-This projects comes without any warranty, you are responsible of the deploy.
+This project comes without any warranty, you are responsible for the deployment.
 If you encounter [open an issue](https://github.com/Steccas/stecCA/issues), consider [getting a sponsor plan](https://github.com/sponsors/Steccas) or contact me to get dedicated support.
 
 
