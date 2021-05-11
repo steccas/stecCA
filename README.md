@@ -169,7 +169,7 @@ WIP
 
 7. Edit [creds.env](https://github.com/Steccas/stecCA/blob/main/creds.env) to setup username and password for DB and other services, they will be automatically changed in the other files and will be automatically used; so use a complicated one.
 
-CHANGE THEM, the one put in the files are meant to be a placeholder or a default password for testing at best!
+  CHANGE THEM, the one put in the files are meant to be a placeholder or a default password for testing at best!
     ```sh
     nano ./lemur.env
     ```
@@ -183,15 +183,15 @@ CHANGE THEM, the one put in the files are meant to be a placeholder or a default
     ```sh
     nano ./lemur.conf.py
     ```
-and at the bottom look for
+  and at the bottom look for
     ```py
     CFSSL_URL ="http://ca.example.lan:8888" #change this with machine ip or dns name
     CFSSL_ROOT ="""<insert root pem here>"""
     CFSSL_INTERMEDIATE ="""<insert intermediate pem here>"""
     ```
-change these value according to the outputted pems and your choosen url.
+  change these value according to the outputted pems and your choosen url.
 
-After this it will start everything up and as a last passage it will ask to add this to crontab, wich wil be opened for you in 5 seconds.
+  After this it will start everything up and as a last passage it will ask to add this to crontab, wich wil be opened for you in 5 seconds.
     ```sh
     cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
     ```
@@ -200,8 +200,10 @@ After this it will start everything up and as a last passage it will ask to add 
     ```sh
     docker ps
     ```
-If they are not healty or something doesn't work, check every passage, open an Issue or check <a href="#support">Support</a>.
 
+  If they are not healty or something doesn't work, check every passage, open an Issue or check <a href="#support">Support</a>.
+
+Enjoy
 <!-- USAGE EXAMPLES -->
 ## Usage
 
