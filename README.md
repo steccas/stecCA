@@ -54,7 +54,7 @@ In these situation a Certificate Authority is needed, but using OpenSSL just fro
 
 So I came across Lemur and CFSSL... I choose CFSSL because it has a very easy to use CLI, offers an OSCP responder and it is integrable with Lemur; Lemur is a platform that offers a web interface and SQL Database for managing the certificates, this way issuing, revoking and keep track of them would be much more efficient to do.
 
-Anyways, there was no products that integrated all of these tecnologies togheter so using some guides and my expertise I setup them togheter using docker and some scripts to have everything as clean as possible and very easy to redeploy.
+Anyways, there was no products that integrated all of these tecnologies togheter so using some guides and my expertise I've setup them togheter using docker and some scripts to have everything as clean as possible and very easy to redeploy.
 
 Now I'm publishing it to GitHub because it could be really useful for a lot of people! I'd also like to further improve the projects making the integration better and adding even more functionalities for various use cases.
 
