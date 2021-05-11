@@ -109,7 +109,7 @@ The deploy is done with docker and some bash scripting, it makes data persistanc
 * Persistence
   - The integration with PostgreSQL of both CSSL and Lemur allows to easily manage and make persistent all the data needed.
 * OSCP Responder
-  - CFSSL Own OSCP responder has been set-up, including automatic updates.
+  - CFSSL own OSCP responder has been set-up, including automatic updates.
     (I'm Not sure if it is already working as I configured it, so any help is really appreciated)
 
 <!-- GETTING STARTED -->
