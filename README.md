@@ -198,7 +198,7 @@ I'm using nano in some commands, but you can use any editor you want of course!
     CFSSL_ROOT ="""<insert root pem here>"""
     CFSSL_INTERMEDIATE ="""<insert intermediate pem here>"""
     ```
-    After this it will start everything up and as a last passage it will ask to add this to crontab, wich wil be opened for you in 5 seconds.
+    After this it will start everything up and as a last passage it will ask to add this to crontab, which wil be opened for you in 5 seconds.
     ```sh
     cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
     ```
