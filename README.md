@@ -152,7 +152,7 @@ Otherwise, you need to edit lines 69 and 70 of [setup_cfssl.sh](https://github.c
 
 ### Installation
 
-WIP
+I'm using nano in some commands, but you can use any editor you want of course!
 
 1. Clone the repo
     ```sh
@@ -171,29 +171,24 @@ WIP
     ```sh
     nano ./ocsp.csr.json
     ```
-
+    
 5. Edit [lemur.env](https://github.com/Steccas/stecCA/blob/main/lemur.env) to have the same informations available to Lemur. Don't touch the password, it will be set later automatically.
     ```sh
     nano ./lemur.env
     ```
 
-6. Edit [lemur.env](https://github.com/Steccas/stecCA/blob/main/lemur.env) to have the same informations available to Lemur. Don't touch the password, it will be set later automatically.
+6. Edit [creds.env](https://github.com/Steccas/stecCA/blob/main/creds.env) to setup username and password for DB and other services, they will be automatically changed in the other files and will be automatically used; so use a complicated one.
     ```sh
-    nano ./lemur.env
-    ```
-
-7. Edit [creds.env](https://github.com/Steccas/stecCA/blob/main/creds.env) to setup username and password for DB and other services, they will be automatically changed in the other files and will be automatically used; so use a complicated one.
-    ```sh
-    nano ./lemur.env
+    nano ./creds.env
     ```
     CHANGE THEM, the one put in the files are meant to be a placeholder or a default password for testing at best!
 
-8. Start the setup script as root, it will ask if you configured everything, but if you don't do and something doesn't work as expected or you leave the default password that everyone in github knows it is up to you!
+7. Start the setup script as root, it will ask if you configured everything, but if you don't do and something doesn't work as expected or you leave the default password that everyone in github knows it is up to you!
     ```sh
     sudo ./setup_cfssl.sh
     ```
 
-9. The setup will ask at some point to paste the pem certs data at the bottom of [lemur.conf.py](https://github.com/Steccas/stecCA/blob/main/lemur.conf.py), it is important or Lemur WILL NOT WORK.
+8. The setup will ask at some point to paste the pem certs data at the bottom of [lemur.conf.py](https://github.com/Steccas/stecCA/blob/main/lemur.conf.py), it is important or Lemur WILL NOT WORK.
     ```sh
     nano ./lemur.conf.py
     ```
@@ -208,13 +203,13 @@ WIP
     cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
     ```
 
-10. Check the health of the containers with
+9. Check the health of the containers with
     ```sh
     docker ps
     ```
     If they are not healty or something doesn't work, check every passage, open an Issue or check <a href="#support">Support</a>.
 
-Enjoy
+10. Enjoy
 <!-- USAGE EXAMPLES -->
 ## Usage
 
