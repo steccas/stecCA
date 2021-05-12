@@ -53,7 +53,6 @@
   <a href="#built-whit">Technologies</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#getting-started">How To Use</a> •
-  <a href="#you-may-also-like">Related</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#support">Support</a> •
   <a href="#license">License</a>
