@@ -64,7 +64,8 @@ volumes:
 
 networks:
   canet:
+    driver: bridge
     ipam:
-      driver: bridge
+      driver: default
       config:
         - subnet: 192.168.48.0/29
