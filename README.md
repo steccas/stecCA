@@ -131,6 +131,8 @@ The deployment is done with docker and some bash scripting, it makes data persis
 
 Getting the CA up and running is fairly easy if you pay attention in following these little steps, the guide and the scripts are assuming that you are using a Debian based Linux distro (including Ubuntu Server or Raspibian) but support for other distro is very feasible because only the 'apt' commands need to be changed.
 
+**If on debian, pay attention during the passage in wich the scripts imports the golang ppa**
+
 Windows is a nono, but maybe adapting the setup scripts will make it doable.
 
 ### Prerequisites
@@ -197,7 +199,7 @@ I'm using nano in some commands, but you can use any editor you want of course!
     CFSSL_ROOT ="""<insert root pem here>"""
     CFSSL_INTERMEDIATE ="""<insert intermediate pem here>"""
     ```
-    After this it will start everything up and as a last passage it will ask to add this to crontab, which wil be opened for you in 5 seconds.
+    After this it will start everything up and as a last passage it will ask to add this to crontab, of course set also your desired frequency, which wil be opened for you in 5 seconds.
     ```sh
     cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
     ```
