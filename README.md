@@ -184,8 +184,9 @@ I'm using nano in some commands, but you can use any editor you want of course!
     ```
     CHANGE THEM, the one put in the files are meant to be a placeholder or a default password for testing at best!
 
-7. Start the setup script as root, it will ask if you configured everything, but if you don't do and something doesn't work as expected or you leave the default password that everyone in github knows it is up to you!
+7. Start the setup script as root, it will ask if you configured everything, but if you don't do and something doesn't work as expected or you leave the default password (that everyone in github will know) it is up to you! Also, before running make sure that you have the execute permission flag.
     ```sh
+    chmod u+x ./setup_cfssl.sh
     sudo ./setup_cfssl.sh
     ```
 
