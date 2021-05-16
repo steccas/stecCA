@@ -215,7 +215,7 @@ I'm using nano in some commands, but you can use any editor you want of course!
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-You can now simply open Lemur at port 443 of your machine (using your IP, localhost, or DNS name) and log in with your defined credentials.
+You can now simply open Lemur at port 443 of your machine (using your IP, localhost, or DNS name) and log in with your defined credentials, the web interface password is defined in the `lempass` environment variable.
 
 Of course, remember to add your CA to your OSes and browsers.
 
