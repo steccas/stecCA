@@ -99,7 +99,7 @@ else
     echo "Read the readme, and configure everything!"
     sleep 2
 
-    nano ./creds
+    nano ./creds.env
 fi
 
 exit 1
