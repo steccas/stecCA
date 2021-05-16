@@ -14,7 +14,7 @@ then
     apt install golang-go
 
     #setup password from password config file
-    source ./creds
+    source ./creds.env
 
     rm ./db_config.json
 
