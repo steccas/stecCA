@@ -62,8 +62,8 @@ services:
     restart: unless-stopped
 
 volumes:
-    db_data: # named volumes can be managed easier using docker-compose
-    ca_data:
+  db_data: # named volumes can be managed easier using docker-compose
+  ca_data:
 
 networks:
   canet:
