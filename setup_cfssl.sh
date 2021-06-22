@@ -71,6 +71,9 @@ then
 
     git clone --depth=1 https://github.com/Netflix/lemur.git lemur-build-docker/lemur
 
+    mkdir lemur_keys
+    python3 gensec.py
+
     #start everything
     docker-compose up -d
 
