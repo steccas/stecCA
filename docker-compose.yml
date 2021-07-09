@@ -57,6 +57,7 @@ services:
       - lemur.env
       - lemur_db.env
     volumes:
+      - ./lemur_keys:/home/lemur/.lemur/lemur_keys:ro
       - ./lemur.conf.py:/home/lemur/.lemur/lemur.conf.py:ro
       - ca_data:/opt/lemur/lemur/static/dist:ro
     restart: unless-stopped
