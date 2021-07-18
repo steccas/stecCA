@@ -31,11 +31,17 @@
             },
             "server": {
                 "usages": ["signing", "key encipherment", "server auth"],
-                "expiry": "26280h"
+                "expiry": "26280h",
+                "ca_constraint": {
+                    "is_ca": false
+                }
             },
             "client": {
                 "usages": ["signing", "key encipherment", "client auth"],
-                "expiry": "26280h"
+                "expiry": "26280h",
+                "ca_constraint": {
+                    "is_ca": false
+                }
             }
         }
     }
