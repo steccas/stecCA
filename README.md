@@ -74,7 +74,7 @@ Now I'm publishing it to GitHub because it could be really useful for a lot of p
 
 *Need to quickly set up your CA in a matter of minutes? It is not a problem anymore!*
 
-## Built whit
+## Built with
 
 This project uses the following technologies:
 
