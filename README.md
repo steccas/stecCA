@@ -129,7 +129,7 @@ The deployment is done with docker and some bash scripting, it makes data persis
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Getting the CA up and running is fairly easy if you pay attention in following these little steps, the guide and the scripts are assuming that you are using a Debian based Linux distro (including Ubuntu Server or Raspibian) but support for other distro is very feasible because only the 'apt' commands need to be changed.
+Getting the CA up and running is fairly easy if you pay attention in following these little steps, the guide and the scripts are assuming that you are using a Debian based Linux distro (including Ubuntu Server or Raspbian) but support for other distro is very feasible because only the 'apt' commands need to be changed.
 
 **If on debian, pay attention during the passage in wich the scripts imports the golang ppa**
 
