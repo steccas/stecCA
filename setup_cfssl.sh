@@ -85,13 +85,13 @@ then
     systemctl start cfssl.service
     systemctl start ocsp.service
 
-    cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
+    cfssl ocspdump -loglevel=0 -db-config /etc/cfssl/db_config.json > /etc/cfssl/ocspdump
     #cfssl ocspserve -port=8889 -responses=/etc/cfssl/ocspdump  -loglevel=0
 
     docker-compose restart
 
     echo "We are almost ready please paste this command into the crontab that it is about to open then save. Press ENTER when ready"
-    echo "cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump"
+    echo "cfssl ocspdump -loglevel=0 -db-config /etc/cfssl/db_config.json > /etc/cfssl/ocspdump"
     echo "Waiting 5 seconds so you can copy paste"
     sleep 5
     #add to crontab the ocsdump command
