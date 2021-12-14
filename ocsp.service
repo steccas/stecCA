@@ -6,7 +6,7 @@ After=network-online.target
 [Service]
 User=cfssl
 Group=cfssl
-ExecStartPre=/usr/local/bin/cfssl ocspdump -db-config /etc/cfssl/db_config.json> /etc/cfssl/ocspdump
+ExecStartPre=/usr/local/bin/cfssl ocspdump -loglevel=0 -db-config /etc/cfssl/db_config.json > /etc/cfssl/ocspdump
 ExecStart=/usr/local/bin/cfssl ocspserve -port=8889 -responses=/etc/cfssl/ocspdump  -loglevel=0
 Restart=always
 PrivateTmp=yes
