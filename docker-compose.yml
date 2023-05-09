@@ -42,9 +42,9 @@ services:
     restart: unless-stopped
 
   lemur:
-    image: netlix-lemur:latest
-    build:
-      context: ./lemur-build-docker
+    image: jockerdragon/netlix-lemur:latest
+    #build:
+    #  context: ./lemur-build-docker
     #name: lemur
     restart: on-failure
     networks:

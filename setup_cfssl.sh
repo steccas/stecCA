@@ -10,8 +10,8 @@ then
     add-apt-repository ppa:longsleep/golang-backports
     apt update
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F6BC817356A3D45E
-    apt update && apt upgrade
-    apt install golang-go
+    apt update #&& apt upgrade
+    apt install golang-1.16-go
 
     #setup password from password config file
     source ./creds.env
@@ -102,7 +102,7 @@ else
     echo "Read the readme, and configure everything!"
     sleep 2
 
-    nano ./creds.env
+    vim ./creds.env
 fi
 
 exit 1
